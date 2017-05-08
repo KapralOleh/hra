@@ -1,3 +1,3 @@
-HRA- human resources application
-npm i 
+HRA- human resources application<br>
+npm i<br>
 npm start
