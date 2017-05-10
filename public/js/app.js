@@ -43,6 +43,7 @@ app.factory('TeamService', ['$resource', function($resource) {
     return $resource('/teams/:teamId');
 }]);
 
+// Placeholder for image 
 app.directive('imageFallback', function() {
     return {
         link: function(scope, elem, attrs) {
@@ -94,12 +95,14 @@ app.directive('imageFallback', function() {
     return exports;
 });
 
+// Employees controller
 app.controller('EmployeesCtrl', ['$scope', 'EmployeeService',function($scope, service) {
     service.query(function(data, headers) {
         $scope.employees = data;
     }, _handleError);
 }]);
 
+// Employee controller
 app.controller('EmployeeCtrl', ['$scope', '$routeParams','EmployeeService', 'TeamService', '$q', 'config', '$route',
 function($scope, $routeParams, employee, team, $q, config, $route) {
     $scope.address = {};
@@ -156,12 +159,14 @@ function($scope, $routeParams, employee, team, $q, config, $route) {
     }
 }]);
 
+// Teams controller
 app.controller('TeamsCtrl', ['$scope', 'TeamService', function($scope, service) {
     service.query(function (data) {
         $scope.teams = data;
     }, _handleError);
 }]);
 
+// Team controller
 app.controller('TeamCtrl', ['$scope', '$routeParams', 'TeamService', function($scope, $routeParams, service) {
     service.get({
         teamId: $routeParams.teamId
@@ -169,7 +174,8 @@ app.controller('TeamCtrl', ['$scope', '$routeParams', 'TeamService', function($s
         $scope.team = data;
     }, _handleError);
 }]);
+//error handler
 function _handleError(response) {
-    // TODO: Do something here. Probably just redirect to error page
+    // TODO: redirect to error page
     console.log('%c ' + response, 'color:red');
 }
